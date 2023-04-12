@@ -5,7 +5,7 @@ app = Dash()
 
 # This is section that designs web pages
 app.layout = html.Div(children=[
-    'This is simple layout 2'
+    'This is simple layout 3'
 ])
 
 # This line runs the server
