@@ -6,6 +6,7 @@ happiness = pd.read_csv('world_happiness.csv')
 
 app = Dash()
 score_type_dict = dict(happiness_rank='Happiness Rank', happiness_score='Happiness Score')
+
 app.layout = html.Div(children=[
     html.H1(children=['World happiness dashboard']),
     html.P(children=['This dashboard shows happiness score',
@@ -13,7 +14,10 @@ app.layout = html.Div(children=[
                      html.A(children=['World happiness score data source'],
                             href='https://worldhappiness.report',
                             target='_blank')]),
-    html.P(dcc.RadioItems(id='region-select', options=happiness['region'].unique(), value='Central and Eastern Europe')),
+    dcc.RadioItems(id='region-select', options=happiness['region'].unique(),
+                   value='Central and Eastern Europe',
+                   inputStyle={'margin-left': '15px'},
+                   style={'display': 'flex', 'flex-direction': 'row'}),
     dcc.Dropdown(id='country-select', options=happiness['country'].unique(), value='Poland'),
     dcc.RadioItems(id='score-type-select', options=score_type_dict, value='happiness_score'),
     html.P(),
@@ -22,7 +26,6 @@ app.layout = html.Div(children=[
     html.Div(id='text-area', children=[]),
     dcc.Graph(id='average-happiness-plot')
 ])
-
 
 
 @app.callback(
@@ -40,7 +43,7 @@ def change_dropdown(region):
     Output('happiness-plot', 'figure'),
     Output('average-happiness-plot', 'figure'),
     Output('text-area', 'children'),
-    Input('submit-button','n_clicks'),
+    Input('submit-button', 'n_clicks'),
     State(component_id='country-select', component_property='value'),
     State(component_id='region-select', component_property='value'),
     State(component_id='score-type-select', component_property='value')
