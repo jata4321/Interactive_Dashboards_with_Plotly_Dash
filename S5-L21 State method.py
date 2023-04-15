@@ -13,7 +13,7 @@ app.layout = html.Div(children=[
                      html.A(children=['World happiness score data source'],
                             href='https://worldhappiness.report',
                             target='_blank')]),
-    dcc.RadioItems(id='region-select', options=happiness['region'].unique(), value='Central and Eastern Europe'),
+    html.P(dcc.RadioItems(id='region-select', options=happiness['region'].unique(), value='Central and Eastern Europe')),
     dcc.Dropdown(id='country-select', options=happiness['country'].unique(), value='Poland'),
     dcc.RadioItems(id='score-type-select', options=score_type_dict, value='happiness_score'),
     html.P(),
@@ -22,6 +22,7 @@ app.layout = html.Div(children=[
     html.Div(id='text-area', children=[]),
     dcc.Graph(id='average-happiness-plot')
 ])
+
 
 
 @app.callback(
