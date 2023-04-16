@@ -1,0 +1,13 @@
+body {
+background-color: #fAf1fA;
+}
+h1 { font-size: 4.5rem;
+line-height: 1.2;
+letter-spacing: -.1rem;
+margin-bottom: 2rem;
+color: red}
+a {
+color: #1EAEDB;
+text-decoration: underline;
+cursor: pointer;
+}
